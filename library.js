@@ -1,0 +1,68 @@
+var Library = function(name, creator) {
+  this.name = name;
+  this.creator = creator;
+  this.playlist = [];
+}
+
+Library.prototype.addPlaylist = function(playlist) {
+  this.playlist.push(playlist);
+}
+
+ var Track = function(title, rating, length) {
+    this.title = title;
+    this.rating = rating;
+    this.length = length;
+ }
+
+ var Playlist = function(name) {
+    this.name = name;
+    this.tracks = [];
+    this.rating = 0;
+    this.duration = 0;
+  }
+
+ Playlist.prototype.addTrack = function(track) {
+  this.tracks.push(track);
+ }
+
+ Playlist.prototype.overallRating = function() {
+  let rating = 0;
+    for(let track of this.tracks) {
+      rating += track.rating;
+    }
+    this.rating = rating / this.tracks.length;
+ }
+
+ Playlist.prototype.totalDuration = function() {
+  let totDuration = 0;
+  for(let track of this.tracks) {
+    totDuration += track.length;
+  }
+  this.duration = totDuration;
+}
+
+
+
+
+var track1 = new Track('The Words I Couldn’t Say', 5, 20);
+var track2 = new Track('When I’m Away', 5, 25);
+var track3 = new Track('With All My Heart and Soul', 1, 30);
+var track4 = new Track('Girls Can Break Hearts, Too', 2, 12);
+var track5 = new Track('A Darker Kind of Day', 2, 30);
+
+var playlist1 = new Playlist("Colorful Darkness");
+playlist1.addTrack(track2);
+playlist1.addTrack(track3);
+playlist1.overallRating();
+console.log(playlist1.rating);
+playlist1.totalDuration();
+console.log(playlist1.duration);
+
+var library = new Library("Shay", "Prerana");
+library.addPlaylist(playlist1);
+console.log(library.playlist);
+
+
+
+
+
