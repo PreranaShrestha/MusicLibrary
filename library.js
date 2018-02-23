@@ -10,8 +10,12 @@ Library.prototype.addPlaylist = function(playlist) {
 
  var Track = function(title, rating, length) {
     this.title = title;
-    this.rating = rating;
     this.length = length;
+    if(rating <= 5 && rating >= 1) {
+      this.rating = rating;
+    } else {
+      console.log("Rating should be from 1 to 5 ");
+    }
  }
 
  var Playlist = function(name) {
@@ -38,7 +42,7 @@ Library.prototype.addPlaylist = function(playlist) {
 
 
 var track1 = new Track('The Words I Couldn’t Say', 5, 20);
-var track2 = new Track('When I’m Away', 5, 25);
+var track2 = new Track('When I’m Away', 4, 25);
 var track3 = new Track('With All My Heart and Soul', 1, 30);
 var track4 = new Track('Girls Can Break Hearts, Too', 2, 12);
 var track5 = new Track('A Darker Kind of Day', 2, 30);
