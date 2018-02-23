@@ -17,8 +17,7 @@ Library.prototype.addPlaylist = function(playlist) {
  var Playlist = function(name) {
     this.name = name;
     this.tracks = [];
-    this.rating = 0;
-    this.duration = 0;
+
   }
 
  Playlist.prototype.addTrack = function(track) {
@@ -26,19 +25,13 @@ Library.prototype.addPlaylist = function(playlist) {
  }
 
  Playlist.prototype.overallRating = function() {
-  let rating = 0;
-    for(let track of this.tracks) {
-      rating += track.rating;
-    }
-    this.rating = rating / this.tracks.length;
+  const rating = this.tracks.reduce((previous, key) => {return previous + key.rating}, 0);
+ return rating / this.tracks.length;
  }
 
  Playlist.prototype.totalDuration = function() {
-  let totDuration = 0;
-  for(let track of this.tracks) {
-    totDuration += track.length;
-  }
-  this.duration = totDuration;
+  return this.tracks.reduce((previous, key) => {return previous + key.length}, 0);
+
 }
 
 
@@ -53,10 +46,8 @@ var track5 = new Track('A Darker Kind of Day', 2, 30);
 var playlist1 = new Playlist("Colorful Darkness");
 playlist1.addTrack(track2);
 playlist1.addTrack(track3);
-playlist1.overallRating();
-console.log(playlist1.rating);
-playlist1.totalDuration();
-console.log(playlist1.duration);
+console.log(playlist1.overallRating());
+console.log(playlist1.totalDuration());
 
 var library = new Library("Shay", "Prerana");
 library.addPlaylist(playlist1);
